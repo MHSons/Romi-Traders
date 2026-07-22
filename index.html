@@ -24,8 +24,8 @@
             <p>Your premium destination for worldwide quality products.</p>
         </section>
 
-        <h2>Featured Products</h2>
-        <div class="product-grid" id="product-list" style="margin-top: 1rem;"></div>
+        <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Featured Products</h2>
+        <div class="product-grid" id="product-list"></div>
     </div>
 
     <footer>
@@ -40,8 +40,10 @@
                 <div class="card">
                     <img src="${p.image}" alt="${p.name}">
                     <div class="card-body">
-                        <div class="card-title">${p.name}</div>
-                        <div class="card-price">$${p.price.toFixed(2)}</div>
+                        <div>
+                            <div class="card-title">${p.name}</div>
+                            <div class="card-price">$${p.price.toFixed(2)}</div>
+                        </div>
                         <button class="btn" onclick="addToCart(${p.id})">Add to Cart</button>
                     </div>
                 </div>
