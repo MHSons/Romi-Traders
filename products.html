@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - Romi Traders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">ROMI TRADERS</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>All Products</h1>
+        <div class="product-grid" id="all-products" style="margin-top: 1.5rem;"></div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        const grid = document.getElementById('all-products');
+        PRODUCTS.forEach(p => {
+            grid.innerHTML += `
+                <div class="card">
+                    <img src="${p.image}" alt="${p.name}">
+                    <div class="card-body">
+                        <div class="card-title">${p.name}</div>
+                        <div class="card-price">$${p.price.toFixed(2)}</div>
+                        <a href="product-detail.html?id=${p.id}" class="btn" style="margin-bottom:0.5rem; background:#475569;">View Details</a>
+                        <button class="btn" onclick="addToCart(${p.id})">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
