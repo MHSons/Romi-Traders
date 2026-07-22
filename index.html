@@ -3,46 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Romi Traders | International Store</title>
+    <title>Romi Traders | Pakistan's Top E-Commerce Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <a href="index.html" class="logo">ROMI TRADERS</a>
+        <a href="index.html" class="logo">ROMI <span>TRADERS</span></a>
         <nav>
             <a href="index.html">Home</a>
             <a href="products.html">Products</a>
-            <a href="wishlist.html">Wishlist</a>
-            <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
-            <a href="login.html">Login</a>
+            <a href="cart.html">Cart <span class="nav-badge" id="cart-count">0</span></a>
+            <a href="admin.html">Admin</a>
+            <a href="login.html" id="nav-login-link">Login</a>
         </nav>
     </header>
 
     <div class="container">
         <section class="hero">
-            <h1>Welcome to Romi Traders</h1>
-            <p>Your premium destination for worldwide quality products.</p>
+            <h1>Premium Quality Products in Pakistan</h1>
+            <p>Fast delivery across Karachi, Lahore, Islamabad & All Pakistan. Safe & Secure Checkout.</p>
         </section>
 
-        <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Featured Products</h2>
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem;">Featured Products</h2>
         <div class="product-grid" id="product-list"></div>
     </div>
 
     <footer>
-        <p>© 2026 Romi Traders. All rights reserved.</p>
+        <p>© 2026 Romi Traders Pakistan. All rights reserved.</p>
     </footer>
 
     <script src="main.js"></script>
     <script>
         const grid = document.getElementById('product-list');
-        PRODUCTS.forEach(p => {
+        const products = getStoredProducts();
+
+        products.forEach(p => {
             grid.innerHTML += `
                 <div class="card">
-                    <img src="${p.image}" alt="${p.name}">
+                    <div class="card-img-wrapper">
+                        <span class="badge-pk">Pakistan</span>
+                        <img src="${p.image}" alt="${p.name}">
+                    </div>
                     <div class="card-body">
                         <div>
+                            <div class="card-category">${p.category}</div>
                             <div class="card-title">${p.name}</div>
-                            <div class="card-price">$${p.price.toFixed(2)}</div>
+                            <div class="card-price">${formatPKR(p.price)}</div>
                         </div>
                         <button class="btn" onclick="addToCart(${p.id})">Add to Cart</button>
                     </div>
