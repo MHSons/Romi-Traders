@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Romi Traders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">ROMI TRADERS</a>
+        <nav>
+            <a href="products.html">Continue Shopping</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Your Shopping Cart</h1>
+        <div id="cart-items-container"></div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        function renderCartPage() {
+            const container = document.getElementById('cart-items-container');
+            const cart = getCart();
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="margin-top:2rem;">Your cart is empty.</p>';
+                return;
+            }
+
+            let total = 0;
+            let html = `<table><tr><th>Product</th><th>Price</th><th>Qty</th><th>Subtotal</th><th>Action</th></tr>`;
+            cart.forEach(item => {
+                let subtotal = item.price * item.quantity;
+                total += subtotal;
+                html += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>$${item.price.toFixed(2)}</td>
+                        <td>${item.quantity}</td>
+                        <td>$${subtotal.toFixed(2)}</td>
+                        <td><button class="btn btn-danger" onclick="removeFromCart(${item.id})">Remove</button></td>
+                    </tr>
+                `;
+            });
+            html += `</table>
+                <div style="margin-top: 1.5rem; text-align: right;">
+                    <h3>Total: $${total.toFixed(2)}</h3>
+                    <a href="checkout.html" class="btn" style="margin-top: 1rem; width: auto; padding: 0.8rem 2rem;">Proceed to Checkout &rarr;</a>
+                </div>
+            `;
+            container.innerHTML = html;
+        }
+
+        document.addEventListener("DOMContentLoaded", renderCartPage);
+    </script>
+</body>
+</html>
